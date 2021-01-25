@@ -12,4 +12,15 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Arhitecture.Data\Arhitecture.Data.csproj" />
+    <ProjectReference Include="..\Arhitecture.Domain\Arhitecture.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
