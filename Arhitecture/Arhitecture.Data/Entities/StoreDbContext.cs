@@ -17,7 +17,6 @@ namespace Arhitecture.Data.Entities
         public DbSet<Bill> Bills { get; set; }
         public DbSet<Category> Categories { get; set; }
         public DbSet<Employee> Employees { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
         public DbSet<Offer> Offers { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<Service> Services { get; set; }
@@ -27,6 +26,7 @@ namespace Arhitecture.Data.Entities
         public DbSet<RentBill> RentBills { get; set; }
         public DbSet<ServiceBill> ServiceBills { get; set; }
         public DbSet<Subscriptioner> Subscriptioners { get; set; }
+        public object Category { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

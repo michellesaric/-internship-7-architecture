@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arhitecture.Data.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20210125142515_IntialDatabase")]
-    partial class IntialDatabase
+    [Migration("20210126122853_InitalDatabse")]
+    partial class InitalDatabse
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -70,11 +70,6 @@ namespace Arhitecture.Data.Migrations
                         {
                             Id = 6,
                             DateAndTimeOfIssue = new DateTime(2020, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified)
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DateAndTimeOfIssue = new DateTime(2021, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -177,58 +172,6 @@ namespace Arhitecture.Data.Migrations
                             EndingOfShift = new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
                             FirstName = "Krešimir",
                             LastName = "Čondić"
-                        });
-                });
-
-            modelBuilder.Entity("Arhitecture.Data.Entities.Models.Inventory", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<int>("Count")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Inventories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Count = 5
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Count = 10
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Count = 15
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Count = 8
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Count = 30
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Count = 80
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Count = 45
                         });
                 });
 
@@ -611,15 +554,13 @@ namespace Arhitecture.Data.Migrations
                         .HasColumnType("int")
                         .UseIdentityColumn();
 
-                    b.Property<int>("InventoryId")
+                    b.Property<int>("Count")
                         .HasColumnType("int");
 
                     b.Property<int?>("OfferId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("InventoryId");
 
                     b.HasIndex("OfferId");
 
@@ -629,43 +570,43 @@ namespace Arhitecture.Data.Migrations
                         new
                         {
                             Id = 1,
-                            InventoryId = 1,
+                            Count = 2,
                             OfferId = 1
                         },
                         new
                         {
                             Id = 2,
-                            InventoryId = 2,
+                            Count = 9,
                             OfferId = 2
                         },
                         new
                         {
                             Id = 3,
-                            InventoryId = 3,
+                            Count = 59,
                             OfferId = 3
                         },
                         new
                         {
                             Id = 4,
-                            InventoryId = 4,
+                            Count = 90,
                             OfferId = 4
                         },
                         new
                         {
                             Id = 5,
-                            InventoryId = 5,
+                            Count = 14,
                             OfferId = 5
                         },
                         new
                         {
                             Id = 6,
-                            InventoryId = 6,
+                            Count = 60,
                             OfferId = 6
                         },
                         new
                         {
                             Id = 7,
-                            InventoryId = 7,
+                            Count = 9,
                             OfferId = 7
                         });
                 });
@@ -1007,17 +948,9 @@ namespace Arhitecture.Data.Migrations
 
             modelBuilder.Entity("Arhitecture.Data.Entities.Models.Product", b =>
                 {
-                    b.HasOne("Arhitecture.Data.Entities.Models.Inventory", "Inventory")
-                        .WithMany("Products")
-                        .HasForeignKey("InventoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Arhitecture.Data.Entities.Models.Offer", "Offer")
                         .WithMany("Products")
                         .HasForeignKey("OfferId");
-
-                    b.Navigation("Inventory");
 
                     b.Navigation("Offer");
                 });
@@ -1107,11 +1040,6 @@ namespace Arhitecture.Data.Migrations
             modelBuilder.Entity("Arhitecture.Data.Entities.Models.Employee", b =>
                 {
                     b.Navigation("Bills");
-                });
-
-            modelBuilder.Entity("Arhitecture.Data.Entities.Models.Inventory", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("Arhitecture.Data.Entities.Models.Offer", b =>

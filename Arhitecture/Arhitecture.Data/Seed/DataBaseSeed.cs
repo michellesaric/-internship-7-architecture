@@ -9,45 +9,7 @@ namespace Arhitecture.Data.Seed
     {
         public static void Seed(ModelBuilder builder)
         {
-            builder.Entity<Inventory>()
-          .HasData(new List<Inventory>
-          {
-                   new Inventory
-                   {
-                       Id = 1,
-                       Count = 5
-                   },
-                   new Inventory
-                   {
-                       Id = 2,
-                       Count = 10
-                   },
-                   new Inventory
-                   {
-                       Id = 3,
-                       Count = 15
-                   },
-                   new Inventory
-                   {
-                       Id = 4,
-                       Count = 8
-                   },
-                   new Inventory
-                   {
-                       Id = 5,
-                       Count = 30
-                   },
-                   new Inventory
-                   {
-                       Id = 6,
-                       Count = 80
-                   },
-                   new Inventory
-                   {
-                       Id = 7,
-                       Count = 45
-                   }
-          });
+            
             builder.Entity<Offer>()
                .HasData(new List<Offer>
                {
@@ -184,46 +146,46 @@ namespace Arhitecture.Data.Seed
                    new Product
                    {
                        Id = 1,
-                       InventoryId = 1,
+                       Count = 2,
                        OfferId = 1
                    },
                    new Product
                    {
                        Id = 2,
-                       InventoryId = 2,
+                       Count = 9,
                        OfferId = 2
                    },
                    new Product
                    {
                        Id = 3,
-                       InventoryId = 3,
+                       Count = 59,
                        OfferId = 3
                    },
                    new Product
                    {
                        Id = 4,
-                       InventoryId = 4,
+                       Count = 90,
                        OfferId = 4
                    },
                    new Product
                    {
                        Id = 5,
-                       InventoryId = 5,
+                       Count = 14,
                        OfferId = 5
                    },
                    new Product
                    {
                        Id = 6,
-                       InventoryId = 6,
+                       Count = 60,
                        OfferId = 6
                    },
                    new Product
                    {
                        Id = 7,
-                       InventoryId = 7,
+                       Count = 9,
                        OfferId = 7
                    }
-               });
+               }) ;
             builder.Entity<Service>()
                .HasData(new List<Service>
                {
@@ -531,11 +493,6 @@ namespace Arhitecture.Data.Seed
               {
                   Id = 6,
                   DateAndTimeOfIssue = new DateTime(2020, 12, 14)
-              },
-              new Bill
-              {
-                  Id = 7,
-                  DateAndTimeOfIssue = new DateTime(2021, 01, 04)
               }
           });
 

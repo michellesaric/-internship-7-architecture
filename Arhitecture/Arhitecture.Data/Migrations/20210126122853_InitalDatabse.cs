@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Arhitecture.Data.Migrations
 {
-    public partial class IntialDatabase : Migration
+    public partial class InitalDatabse : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -34,19 +34,6 @@ namespace Arhitecture.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Employees", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Inventories",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Count = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Inventories", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -130,18 +117,12 @@ namespace Arhitecture.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    InventoryId = table.Column<int>(type: "int", nullable: false),
+                    Count = table.Column<int>(type: "int", nullable: false),
                     OfferId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Products", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Products_Inventories_InventoryId",
-                        column: x => x.InventoryId,
-                        principalTable: "Inventories",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Products_Offers_OfferId",
                         column: x => x.OfferId,
@@ -295,8 +276,7 @@ namespace Arhitecture.Data.Migrations
                     { 3, new DateTime(2020, 11, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
                     { 4, new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
                     { 5, new DateTime(2020, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 6, new DateTime(2020, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null },
-                    { 7, new DateTime(2021, 1, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
+                    { 6, new DateTime(2020, 12, 14, 0, 0, 0, 0, DateTimeKind.Unspecified), null }
                 });
 
             migrationBuilder.InsertData(
@@ -304,13 +284,13 @@ namespace Arhitecture.Data.Migrations
                 columns: new[] { "Id", "Name" },
                 values: new object[,]
                 {
-                    { 7, "Category G" },
                     { 6, "Category F" },
                     { 5, "Category E" },
-                    { 3, "Category C" },
+                    { 4, "Category D" },
+                    { 7, "Category G" },
                     { 2, "Category B" },
                     { 1, "Category A" },
-                    { 4, "Category D" }
+                    { 3, "Category C" }
                 });
 
             migrationBuilder.InsertData(
@@ -324,24 +304,11 @@ namespace Arhitecture.Data.Migrations
                 });
 
             migrationBuilder.InsertData(
-                table: "Inventories",
-                columns: new[] { "Id", "Count" },
-                values: new object[,]
-                {
-                    { 5, 30 },
-                    { 6, 80 },
-                    { 4, 8 },
-                    { 7, 45 },
-                    { 2, 10 },
-                    { 1, 5 },
-                    { 3, 15 }
-                });
-
-            migrationBuilder.InsertData(
                 table: "Offers",
                 columns: new[] { "Id", "Name", "Price" },
                 values: new object[,]
                 {
+                    { 13, "Service F", 59m },
                     { 21, "Rent G", 80m },
                     { 20, "Rent F", 12m },
                     { 19, "Rent E", 25.5m },
@@ -350,26 +317,18 @@ namespace Arhitecture.Data.Migrations
                     { 16, "Rent B", 37.5m },
                     { 15, "Rent A", 35m },
                     { 14, "Service G", 40m },
-                    { 13, "Service F", 59m },
                     { 12, "Service E", 20m },
-                    { 11, "Service D", 39m },
+                    { 4, "Artikal D", 12.79m },
+                    { 10, "Service C", 60m },
                     { 9, "Service B", 30m },
                     { 8, "Service A", 50m },
                     { 7, "Artikal G", 7.8m },
                     { 6, "Artikal F", 18m },
                     { 5, "Artikal E", 17.99m },
-                    { 4, "Artikal D", 12.79m },
-                    { 3, "Artikal C", 13m }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Offers",
-                columns: new[] { "Id", "Name", "Price" },
-                values: new object[,]
-                {
+                    { 3, "Artikal C", 13m },
                     { 2, "Artikal B", 15m },
                     { 1, "Artikal A", 10m },
-                    { 10, "Service C", 60m }
+                    { 11, "Service D", 39m }
                 });
 
             migrationBuilder.InsertData(
@@ -412,16 +371,16 @@ namespace Arhitecture.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "Products",
-                columns: new[] { "Id", "InventoryId", "OfferId" },
+                columns: new[] { "Id", "Count", "OfferId" },
                 values: new object[,]
                 {
-                    { 1, 1, 1 },
-                    { 5, 5, 5 },
-                    { 3, 3, 3 },
-                    { 4, 4, 4 },
-                    { 2, 2, 2 },
-                    { 7, 7, 7 },
-                    { 6, 6, 6 }
+                    { 1, 2, 1 },
+                    { 5, 14, 5 },
+                    { 3, 59, 3 },
+                    { 4, 90, 4 },
+                    { 2, 9, 2 },
+                    { 7, 9, 7 },
+                    { 6, 60, 6 }
                 });
 
             migrationBuilder.InsertData(
@@ -514,11 +473,6 @@ namespace Arhitecture.Data.Migrations
                 column: "ProductId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Products_InventoryId",
-                table: "Products",
-                column: "InventoryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Products_OfferId",
                 table: "Products",
                 column: "OfferId");
@@ -595,9 +549,6 @@ namespace Arhitecture.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Services");
-
-            migrationBuilder.DropTable(
-                name: "Inventories");
 
             migrationBuilder.DropTable(
                 name: "Employees");

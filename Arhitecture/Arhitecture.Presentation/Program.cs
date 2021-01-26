@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Arhitecture.Presentation.Extensions;
+using Arhitecture.Presentation.Factories;
+using System;
 
 namespace Arhitecture
 {
@@ -6,7 +8,8 @@ namespace Arhitecture
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var mainMenuActions = MainMenuFactory.GetMainMenuActions();
+            mainMenuActions.PrintActionsAndCall();
         }
     }
 }
