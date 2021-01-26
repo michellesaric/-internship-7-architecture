@@ -67,5 +67,13 @@ namespace Arhitecture.Domain.Repositories
 
             return SaveChanges();
         }
+        public ICollection<ServiceBill> GetAllServiceBillsInACertainPeriod(DateTime startTime, DateTime endTime)
+        {
+            {
+                return DbContext.ServiceBills
+                    .Where(s => s.Bill.DateAndTimeOfIssue > startTime && s.Bill.DateAndTimeOfIssue < endTime)
+                    .ToList();
+            }
+        }
     }
 }

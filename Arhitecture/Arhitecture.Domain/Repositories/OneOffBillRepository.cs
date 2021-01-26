@@ -62,5 +62,11 @@ namespace Arhitecture.Domain.Repositories
 
             return SaveChanges();
         }
+        public ICollection<OneOffBill> GetAllOneOffBillsInACertainPeriod(DateTime startTime, DateTime endTime)
+        {
+            return DbContext.OneOffBills
+                .Where(o => o.Bill.DateAndTimeOfIssue > startTime && o.Bill.DateAndTimeOfIssue < endTime)
+                .ToList();
+        }
     }
 }
