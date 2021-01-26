@@ -27,6 +27,10 @@ namespace Arhitecture.Domain.Repositories
             {
                 return ResponseResultType.NotFound;
             }
+            if((rentBill.EndingDate < DateTime.Now) || (rentBill.StartingDate > rentBill.EndingDate)) 
+            {
+                return ResponseResultType.ValidationError;
+            }
             var activeRent = new RentBill
             {
                 isRentActive = true,
@@ -56,7 +60,7 @@ namespace Arhitecture.Domain.Repositories
 
         public ICollection<RentBill> GetOnlyActive()
         {
-            return (ICollection<RentBill>)DbContext.RentBills.Where(r => r.isRentActive == true);
+            return DbContext.RentBills.Where(r => r.BillId == null).ToList();
         }
 
         public ResponseResultType Update(int activeRentId, int billId)

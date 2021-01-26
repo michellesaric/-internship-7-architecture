@@ -1,6 +1,8 @@
 ﻿using Arhitecture.Data.Entities;
 using Arhitecture.Data.Entities.Models;
 using Arhitecture.Domain.Enums;
+using Arhitecture.Domain.Models;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;

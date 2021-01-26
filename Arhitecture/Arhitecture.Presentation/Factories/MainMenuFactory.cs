@@ -15,6 +15,8 @@ namespace Arhitecture.Presentation.Factories
                 InventoryManipulationFactory.GetInventoryParentAction(),
                 CategoryActionsFactory.GetCategoryParentAction(),
                 BillActionsFactory.GetBillParentAction(),
+                ActiveRentActionFactory.GetActiveRentParentAction(),
+                ReportFactory.GetReportParentAction(),
                 new ExitMenuAction()
             };
 

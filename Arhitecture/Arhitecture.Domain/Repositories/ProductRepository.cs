@@ -69,6 +69,14 @@ namespace Arhitecture.Domain.Repositories
 
             return SaveChanges();
         }
+        public ICollection<Product> GetLower(int number)
+        {
+            return DbContext.Products.Where(p => p.Count < number).ToList();
+        }
+        public ICollection<Product> GetHigher(int number)
+        {
+            return DbContext.Products.Where(p => p.Count > number).ToList();
+        }
 
     }
 }

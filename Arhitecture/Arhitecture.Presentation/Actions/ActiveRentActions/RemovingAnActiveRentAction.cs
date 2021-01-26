@@ -24,7 +24,7 @@ namespace Arhitecture.Presentation.Actions.ActiveRentActions
 
         public void Call()
         {
-            var activeRents = _rentBillRepository.GetAll();
+            var activeRents = _rentBillRepository.GetOnlyActive();
             PrintHelpers.PrintActiveRents(activeRents);
 
             Console.WriteLine("Type in Active Rent Id or exit");
@@ -35,12 +35,12 @@ namespace Arhitecture.Presentation.Actions.ActiveRentActions
             var result = _rentBillRepository.Delete(activeRentId);
             if (result == ResponseResultType.NotFound)
             {
-                Console.WriteLine("One-off bill not found");
+                Console.WriteLine("Active rent not found");
             }
 
             if (result == ResponseResultType.Success)
             {
-                Console.WriteLine("One-off bill successfully deleted");
+                Console.WriteLine("Active rent successfully deleted");
             }
 
             Console.ReadLine();
