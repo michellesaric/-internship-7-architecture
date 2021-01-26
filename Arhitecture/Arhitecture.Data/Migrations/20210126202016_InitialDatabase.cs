@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Arhitecture.Data.Migrations
 {
-    public partial class InitalDatabse : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,21 +48,6 @@ namespace Arhitecture.Data.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Offers", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Subscriptioners",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreditCardNumber = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Subscriptioners", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -204,7 +189,9 @@ namespace Arhitecture.Data.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     StartingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndingDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SubscriptionerId = table.Column<int>(type: "int", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreditCardNumber = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     BillId = table.Column<int>(type: "int", nullable: true),
                     RentId = table.Column<int>(type: "int", nullable: false)
                 },
@@ -223,12 +210,6 @@ namespace Arhitecture.Data.Migrations
                         principalTable: "Rents",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_RentBills_Subscriptioners_SubscriptionerId",
-                        column: x => x.SubscriptionerId,
-                        principalTable: "Subscriptioners",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -237,8 +218,8 @@ namespace Arhitecture.Data.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StartingDateAndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    EndingDateAndTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    EndingTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EmployeeId = table.Column<int>(type: "int", nullable: false),
                     ServiceId = table.Column<int>(type: "int", nullable: false),
                     BillId = table.Column<int>(type: "int", nullable: false)
@@ -298,9 +279,9 @@ namespace Arhitecture.Data.Migrations
                 columns: new[] { "Id", "BeginingOfShift", "EndingOfShift", "FirstName", "LastName" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(1, 1, 1, 8, 0, 1, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 8, 0, 2, 0, DateTimeKind.Unspecified), "Matija", "Luketin" },
-                    { 2, new DateTime(1, 1, 1, 8, 0, 3, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified), "Ante", "Vuletić" },
-                    { 3, new DateTime(1, 1, 1, 20, 0, 1, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified), "Krešimir", "Čondić" }
+                    { 1, new DateTime(1, 1, 1, 8, 0, 1, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified), "Mate", "Matić" },
+                    { 2, new DateTime(1, 1, 1, 16, 0, 1, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 23, 59, 59, 0, DateTimeKind.Unspecified), "Ante", "Antić" },
+                    { 3, new DateTime(1, 1, 1, 23, 59, 59, 0, DateTimeKind.Unspecified), new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified), "Ana", "Anić" }
                 });
 
             migrationBuilder.InsertData(
@@ -308,37 +289,27 @@ namespace Arhitecture.Data.Migrations
                 columns: new[] { "Id", "Name", "Price" },
                 values: new object[,]
                 {
-                    { 13, "Service F", 59m },
-                    { 21, "Rent G", 80m },
-                    { 20, "Rent F", 12m },
+                    { 12, "Service E", 20m },
                     { 19, "Rent E", 25.5m },
                     { 18, "Rent D", 50m },
                     { 17, "Rent C", 19.5m },
                     { 16, "Rent B", 37.5m },
                     { 15, "Rent A", 35m },
                     { 14, "Service G", 40m },
-                    { 12, "Service E", 20m },
-                    { 4, "Artikal D", 12.79m },
-                    { 10, "Service C", 60m },
+                    { 13, "Service F", 59m },
+                    { 11, "Service D", 39m },
+                    { 3, "Artikal C", 13m },
                     { 9, "Service B", 30m },
                     { 8, "Service A", 50m },
                     { 7, "Artikal G", 7.8m },
                     { 6, "Artikal F", 18m },
                     { 5, "Artikal E", 17.99m },
-                    { 3, "Artikal C", 13m },
+                    { 4, "Artikal D", 12.79m },
+                    { 20, "Rent F", 12m },
                     { 2, "Artikal B", 15m },
                     { 1, "Artikal A", 10m },
-                    { 11, "Service D", 39m }
-                });
-
-            migrationBuilder.InsertData(
-                table: "Subscriptioners",
-                columns: new[] { "Id", "CreditCardNumber", "FirstName", "LastName" },
-                values: new object[,]
-                {
-                    { 2, "1234123412345678", "Bože", "Topić" },
-                    { 1, "1234123412341234", "Michelle", "Šarić" },
-                    { 3, "1234123412341235", "Lucia", "Vukorepa" }
+                    { 10, "Service C", 60m },
+                    { 21, "Rent G", 80m }
                 });
 
             migrationBuilder.InsertData(
@@ -427,24 +398,24 @@ namespace Arhitecture.Data.Migrations
 
             migrationBuilder.InsertData(
                 table: "RentBills",
-                columns: new[] { "Id", "BillId", "EndingDate", "RentId", "StartingDate", "SubscriptionerId" },
+                columns: new[] { "Id", "BillId", "CreditCardNumber", "EndingDate", "FirstName", "LastName", "RentId", "StartingDate" },
                 values: new object[,]
                 {
-                    { 1, null, new DateTime(2020, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2020, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified), 1 },
-                    { 2, null, new DateTime(2020, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2020, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified), 2 },
-                    { 3, null, new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 3, new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 },
-                    { 4, null, new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), 3 }
+                    { 1, null, "1234123412341234", new DateTime(2020, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified), "Michelle", "Šarić", 1, new DateTime(2020, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, null, "1234123412345678", new DateTime(2020, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified), "Bože", "Topić", 2, new DateTime(2020, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, null, "1234123412341235", new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lucia", "Vukorepa", 3, new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, null, "1234123412341235", new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified), "Lucia", "Vukorepa", 4, new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
                 table: "ServiceBills",
-                columns: new[] { "Id", "BillId", "EmployeeId", "EndingDateAndTime", "ServiceId", "StartingDateAndTime" },
+                columns: new[] { "Id", "BillId", "EmployeeId", "EndingTime", "ServiceId", "StartingTime" },
                 values: new object[,]
                 {
-                    { 1, 3, 1, new DateTime(2020, 12, 4, 8, 0, 2, 0, DateTimeKind.Unspecified), 1, new DateTime(2020, 12, 4, 8, 0, 1, 0, DateTimeKind.Unspecified) },
-                    { 2, 4, 2, new DateTime(2020, 12, 16, 16, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(2020, 12, 14, 8, 0, 2, 0, DateTimeKind.Unspecified) },
-                    { 3, 5, 2, new DateTime(2020, 12, 17, 20, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(2020, 12, 16, 17, 0, 0, 0, DateTimeKind.Unspecified) },
-                    { 4, 6, 2, new DateTime(2020, 12, 4, 8, 0, 2, 0, DateTimeKind.Unspecified), 4, new DateTime(2020, 12, 4, 8, 0, 1, 0, DateTimeKind.Unspecified) }
+                    { 1, 3, 1, new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 2, 4, 2, new DateTime(1, 1, 1, 22, 0, 0, 0, DateTimeKind.Unspecified), 1, new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 3, 5, 2, new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified), 2, new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified) },
+                    { 4, 6, 2, new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified), 4, new DateTime(1, 1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.CreateIndex(
@@ -486,11 +457,6 @@ namespace Arhitecture.Data.Migrations
                 name: "IX_RentBills_RentId",
                 table: "RentBills",
                 column: "RentId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_RentBills_SubscriptionerId",
-                table: "RentBills",
-                column: "SubscriptionerId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Rents_OfferId",
@@ -540,9 +506,6 @@ namespace Arhitecture.Data.Migrations
 
             migrationBuilder.DropTable(
                 name: "Rents");
-
-            migrationBuilder.DropTable(
-                name: "Subscriptioners");
 
             migrationBuilder.DropTable(
                 name: "Bills");

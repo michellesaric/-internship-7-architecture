@@ -5,9 +5,9 @@ namespace Arhitecture.Data.Entities.Models
     public class ServiceBill
     {
         public int Id { get; set; }
-        public DateTime StartingDateAndTime { get; set; }
+        public DateTime StartingTime { get; set; }
 
-        public DateTime EndingDateAndTime { get; set; }
+        public DateTime EndingTime { get; set; }
 
         public int EmployeeId { get; set; }
         public Employee Employee { get; set; }

@@ -439,25 +439,25 @@ namespace Arhitecture.Data.Seed
                    new Employee
                    {
                        Id = 1,
-                       FirstName = "Matija",
-                       LastName = "Luketin",
+                       FirstName = "Mate",
+                       LastName = "Matić",
                        BeginingOfShift = new DateTime(1, 1, 1, 8, 0, 1),
-                       EndingOfShift = new DateTime(1, 1, 1, 8, 0, 2)
+                       EndingOfShift = new DateTime(1, 1, 1, 16, 0, 0)
                    },
                    new Employee
                    {
                        Id = 2,
                        FirstName = "Ante",
-                       LastName = "Vuletić",
-                       BeginingOfShift = new DateTime(1, 1, 1, 8, 0, 3),
-                       EndingOfShift = new DateTime(1, 1, 1,20, 0, 0)
+                       LastName = "Antić",
+                       BeginingOfShift = new DateTime(1, 1, 1, 16, 0, 1),
+                       EndingOfShift = new DateTime(1, 1, 1, 23, 59, 59)
                    },
                    new Employee
                    {
                        Id = 3,
-                       FirstName = "Krešimir",
-                       LastName = "Čondić",
-                       BeginingOfShift = new DateTime(1, 1, 1, 20, 0, 1),
+                       FirstName = "Ana",
+                       LastName = "Anić",
+                       BeginingOfShift = new DateTime(1, 1, 1, 23, 59, 59),
                        EndingOfShift = new DateTime(1, 1, 1, 8 ,0, 0)
                    }
             });
@@ -555,8 +555,8 @@ namespace Arhitecture.Data.Seed
               new ServiceBill
               {
                   Id = 1,
-                  StartingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 1),
-                  EndingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 2),
+                  StartingTime = new DateTime(1, 1, 1, 8, 0, 0),
+                  EndingTime = new DateTime(1, 1, 1, 12, 0, 0),
                   EmployeeId = 1,
                   BillId = 3,
                   ServiceId = 1
@@ -564,8 +564,8 @@ namespace Arhitecture.Data.Seed
               new ServiceBill
               {
                   Id = 2,
-                  StartingDateAndTime = new DateTime(2020, 12, 14, 8, 0, 2),
-                  EndingDateAndTime = new DateTime(2020, 12, 16, 16, 0, 0),
+                  StartingTime = new DateTime(1, 1, 1, 17, 0, 0),
+                  EndingTime = new DateTime(1, 1, 1, 22, 0, 0),
                   EmployeeId = 2,
                   BillId = 4,
                   ServiceId = 1
@@ -573,8 +573,8 @@ namespace Arhitecture.Data.Seed
               new ServiceBill
               {
                   Id = 3,
-                  StartingDateAndTime = new DateTime(2020, 12, 16, 17, 0, 0),
-                  EndingDateAndTime = new DateTime(2020, 12, 17, 20, 0, 0),
+                  StartingTime = new DateTime(1, 1, 1, 8, 0, 0),
+                  EndingTime = new DateTime(1, 1, 1, 12, 0, 0),
                   EmployeeId = 2,
                   BillId = 5,
                   ServiceId = 2
@@ -582,36 +582,11 @@ namespace Arhitecture.Data.Seed
               new ServiceBill
               {
                   Id = 4,
-                  StartingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 1),
-                  EndingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 2),
+                  StartingTime = new DateTime(1, 1, 1, 1, 0, 0),
+                  EndingTime = new DateTime(1, 1, 1, 7, 0, 0),
                   EmployeeId = 2,
                   BillId = 6,
                   ServiceId = 4
-              }
-          });
-            builder.Entity<Subscriptioner>()
-          .HasData(new List<Subscriptioner>
-          {
-              new Subscriptioner
-              {
-                  Id = 1,
-                  FirstName = "Michelle",
-                  LastName = "Šarić",
-                  CreditCardNumber = "1234123412341234"
-              },
-              new Subscriptioner
-              {
-                  Id = 2,
-                  FirstName = "Bože",
-                  LastName = "Topić",
-                  CreditCardNumber = "1234123412345678"
-              },
-              new Subscriptioner
-              {
-                  Id = 3,
-                  FirstName = "Lucia",
-                  LastName = "Vukorepa",
-                  CreditCardNumber = "1234123412341235"
               }
           });
             builder.Entity<RentBill>()
@@ -620,36 +595,48 @@ namespace Arhitecture.Data.Seed
               new RentBill
               {
                   Id = 1,
+                  isRentActive = false,
                   StartingDate = new DateTime(2020, 11, 4),
                   EndingDate = new DateTime(2020, 11,  5),
-                  SubscriptionerId = 1,
+                  FirstName = "Michelle",
+                  LastName = "Šarić",
+                  CreditCardNumber = "1234123412341234",
                   RentId = 1
               },
               new RentBill
               {
                   Id = 2,
+                  isRentActive = false,
                   StartingDate = new DateTime(2020, 12, 16),
                   EndingDate = new DateTime(2020, 12,  17),
-                  SubscriptionerId = 2,
+                  FirstName = "Bože",
+                  LastName = "Topić",
+                  CreditCardNumber = "1234123412345678",
                   RentId = 2
               },
               new RentBill
               {
                   Id = 3,
+                  isRentActive = false,
                   StartingDate = new DateTime(2020, 11, 17),
                   EndingDate = new DateTime(2020, 11,  19),
-                  SubscriptionerId = 3,
+                  FirstName = "Lucia",
+                  LastName = "Vukorepa",
+                  CreditCardNumber = "1234123412341235",
                   RentId = 3
               },
               new RentBill
               {
                   Id = 4,
+                  isRentActive = false,
                   StartingDate = new DateTime(2020, 11, 17),
                   EndingDate = new DateTime(2020, 11,  19),
-                  SubscriptionerId = 3,
+                  FirstName = "Lucia",
+                  LastName = "Vukorepa",
+                  CreditCardNumber = "1234123412341235",
                   RentId = 4
               }
-          });
+          }) ;
         }
     }
 }

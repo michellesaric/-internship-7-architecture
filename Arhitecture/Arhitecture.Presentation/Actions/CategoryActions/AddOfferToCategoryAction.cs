@@ -6,16 +6,16 @@ using System;
 
 namespace Arhitecture.Presentation.Actions.CategoryActions
 {
-    public class DeleteAnOfferFromCategory : IAction
+    public class AddOfferToCategoryAction : IAction
     {
         private readonly CategoryRepository _categoryRepository;
         private readonly OfferRepository _offerRepository;
         private readonly OfferPerCategoryRepository _offerPerCategoryRepository;
 
         public int MenuIndex { get; set; }
-        public string Label { get; set; } = "Delete an offer from category";
+        public string Label { get; set; } = "Add an offer to category";
 
-        public DeleteAnOfferFromCategory(CategoryRepository categoryRepository, OfferRepository offerRepository, OfferPerCategoryRepository offerPerCategoryRepository)
+        public AddOfferToCategoryAction(CategoryRepository categoryRepository, OfferRepository offerRepository, OfferPerCategoryRepository offerPerCategoryRepository)
         {
             _categoryRepository = categoryRepository;
             _offerRepository = offerRepository;
@@ -37,7 +37,7 @@ namespace Arhitecture.Presentation.Actions.CategoryActions
             if (!isRead)
                 return;
 
-            var result = _offerPerCategoryRepository.Delete(offerId, categoryId);
+            var result = _offerPerCategoryRepository.Add(offerId, categoryId);
             if (result == ResponseResultType.NotFound)
             {
                 Console.WriteLine("Category or Offer not found");
@@ -46,6 +46,11 @@ namespace Arhitecture.Presentation.Actions.CategoryActions
             if (result == ResponseResultType.Success)
             {
                 Console.WriteLine("Successfully added an offer to a category");
+            }
+
+            if (result == ResponseResultType.AlreadyExists)
+            {
+                Console.WriteLine("There is already an offer in a category you chose");
             }
 
             Console.ReadLine();

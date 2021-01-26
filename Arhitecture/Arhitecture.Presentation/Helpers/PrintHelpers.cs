@@ -71,6 +71,24 @@ namespace Arhitecture.Presentation.Helpers
                 PrintRent(rent);
             }
         }
+        public static void PrintActiveRent(RentBill rentBill)
+        {
+            Console.WriteLine($"Id: {rentBill.Id} \n " +
+                              $"Rent Name: {rentBill.Rent.Offer.Name} \n " +
+                              $"Starting time: {rentBill.StartingDate} \n" +
+                              $"Ending time: {rentBill.EndingDate} \n " +
+                              $"Subscriptioner's first name: {rentBill.FirstName}" +
+                              $"Subscriptioner's last name: {rentBill.LastName}");
+        }
+
+        public static void PrintActiveRents(ICollection<RentBill> activeRents)
+        {
+            foreach (var activeRent in activeRents)
+            {
+                PrintActiveRent(activeRent);
+            }
+        }
+
         public static void PrintCategory(Category category)
         {
             Console.WriteLine($"Id: {category.Id} \t Name: {category.Name}");
@@ -113,7 +131,7 @@ namespace Arhitecture.Presentation.Helpers
 
         public static void PrintServiceBill(ServiceBill serviceBill)
         {
-            Console.WriteLine($"Id: {serviceBill.Id} \t Name of the service: {serviceBill.Service.Offer.Name} \t Starting date and time: {serviceBill.StartingDateAndTime} \t Ending date and time: {serviceBill.EndingDateAndTime} \t Id of employee: {serviceBill.EmployeeId} \t Date of Issue: {serviceBill.Bill.DateAndTimeOfIssue} ");
+            Console.WriteLine($"Id: {serviceBill.Id} \t Name of the service: {serviceBill.Service.Offer.Name} \t Starting date and time: {serviceBill.StartingTime} \t Ending date and time: {serviceBill.EndingTime} \t Id of employee: {serviceBill.EmployeeId} \t Date of Issue: {serviceBill.Bill.DateAndTimeOfIssue} ");
         }
         public static void PrintServiceBills(ICollection<ServiceBill> serviceBills)
         {
@@ -128,8 +146,8 @@ namespace Arhitecture.Presentation.Helpers
                               $"Name of the rent: {rentBill.Rent.Offer.Name} \n" +
                               $"Starting date: {rentBill.StartingDate} \n" +
                               $"Ending date: {rentBill.EndingDate} \n" +
-                              $"Subscriptioner First Name: {rentBill.Subscriptioner.FirstName} \n" +
-                              $"Subscriptioner Last Name: {rentBill.Subscriptioner.LastName} \n" +
+                              $"Subscriptioner First Name: {rentBill.FirstName} \n" +
+                              $"Subscriptioner Last Name: {rentBill.LastName} \n" +
                               $"Date of Issue: {rentBill.Bill.DateAndTimeOfIssue} ");
         }
         public static void PrintRentBills(ICollection<RentBill> rentBills)

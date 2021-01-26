@@ -1,4 +1,6 @@
 ﻿using Arhitecture.Data.Entities;
+using Arhitecture.Data.Entities.Models;
+using Arhitecture.Domain.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +15,50 @@ namespace Arhitecture.Domain.Repositories
         {
         }
 
+        public ResponseResultType Add(int billId, int productId, int amount)
+        {
+            var bill = DbContext.Bills.Find(billId);
+            if(bill == null)
+            {
+                return ResponseResultType.NotFound;
+            }
+            var product = DbContext.Products.Find(productId);
+            if(product == null)
+            {
+                return ResponseResultType.NotFound;
+            }
+            if(amount > product.Count)
+            {
+                return ResponseResultType.ValidationError;
+            }
+            product.Count -= amount;
+
+            var oneOffBill = new OneOffBill
+            {
+                Amount = amount,
+                Bill = bill,
+                Product = product
+            };
+            DbContext.OneOffBills.Add(oneOffBill);
+
+            return SaveChanges();
+        }
+        public ICollection<OneOffBill> GetAll()
+        {
+            return DbContext.OneOffBills.ToList();
+        }
+
+        public ResponseResultType Delete(int oneOffBillId)
+        {
+            var oneOffBill = DbContext.OneOffBills.Find(oneOffBillId);
+            if (oneOffBill == null)
+            {
+                return ResponseResultType.NotFound;
+            }
+
+            DbContext.OneOffBills.Remove(oneOffBill);
+
+            return SaveChanges();
+        }
     }
 }

@@ -13,6 +13,8 @@ namespace Arhitecture.Presentation.Factories
             {
                 OfferActionsFactory.GetOfferParentAction(),
                 InventoryManipulationFactory.GetInventoryParentAction(),
+                CategoryActionsFactory.GetCategoryParentAction(),
+                BillActionsFactory.GetBillParentAction(),
                 new ExitMenuAction()
             };
 

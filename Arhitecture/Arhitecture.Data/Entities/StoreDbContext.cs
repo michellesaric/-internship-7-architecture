@@ -25,7 +25,6 @@ namespace Arhitecture.Data.Entities
         public DbSet<OneOffBill> OneOffBills { get; set; }
         public DbSet<RentBill> RentBills { get; set; }
         public DbSet<ServiceBill> ServiceBills { get; set; }
-        public DbSet<Subscriptioner> Subscriptioners { get; set; }
         public object Category { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

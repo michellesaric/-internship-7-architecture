@@ -50,24 +50,29 @@ namespace Arhitecture.Presentation.Actions.OfferActions
             offer.Price = price;
 
             var responseResult = _offerRepository.Add(offer);
-            if (responseResult == ResponseResultType.Success)
+            if (responseResult != ResponseResultType.Success)
+            {
+                Console.WriteLine("Unsuccessfully added offer");
+                return;
+            }
+            var lastId = _offerRepository.GetLastId();
+            switch (option)
+            {
+                case (int)OfferType.Product:
+                    responseResult = _productRepository.Add(lastId);
+                    break;
+                case (int)OfferType.Service:
+                    responseResult = _serviceRepository.Add(lastId);
+                    break;
+                case (int)OfferType.Rent:
+                    responseResult = _rentRepository.Add(lastId);
+                    break;
+                default:
+                    break;
+            }
+            if(responseResult == ResponseResultType.Success)
             {
                 PrintHelpers.PrintOffer(offer);
-                var lastId = _offerRepository.GetLastId();
-                switch(option)
-                {
-                    case (int)OfferType.Product:
-                        responseResult = _productRepository.Add(lastId);
-                        break;
-                    case (int)OfferType.Service:
-                        responseResult = _serviceRepository.Add(lastId);
-                        break;
-                    case (int)OfferType.Rent:
-                        responseResult = _rentRepository.Add(lastId);
-                        break;
-                    default:
-                        break;
-                }
                 Console.ReadLine();
                 return;
             }

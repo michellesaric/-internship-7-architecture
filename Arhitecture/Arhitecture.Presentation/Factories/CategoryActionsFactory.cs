@@ -15,18 +15,18 @@ namespace Arhitecture.Presentation.Factories
     {
         public static CategoryParentAction GetCategoryParentAction()
         {
-            var offerActions = new List<IAction>
+            var categoryActions = new List<IAction>
             {
                 new CategoryAddAction(RepositoryFactory.GetRepository<CategoryRepository>()),
                 new CategoryEditAction(RepositoryFactory.GetRepository<CategoryRepository>()),
                 new CategoryDeleteAction(RepositoryFactory.GetRepository<CategoryRepository>()),
-                new AddOfferToCategory
+                new AddOfferToCategoryAction
                 (
                     RepositoryFactory.GetRepository<CategoryRepository>(),
                     RepositoryFactory.GetRepository<OfferRepository>(),
                     RepositoryFactory.GetRepository<OfferPerCategoryRepository>()
                 ),
-                new DeleteAnOfferFromCategory
+                new DeleteAnOfferFromCategoryAction
                 (
                     RepositoryFactory.GetRepository<CategoryRepository>(),
                     RepositoryFactory.GetRepository<OfferRepository>(),
@@ -35,8 +35,8 @@ namespace Arhitecture.Presentation.Factories
                 new ExitMenuAction()
             };
 
-            var offerParentAction = new CategoryParentAction(offerActions);
-            return offerParentAction;
+            var categoryParentAction = new CategoryParentAction(categoryActions);
+            return categoryParentAction;
         }
     }
 }

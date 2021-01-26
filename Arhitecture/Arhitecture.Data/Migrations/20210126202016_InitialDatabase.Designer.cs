@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Arhitecture.Data.Migrations
 {
     [DbContext(typeof(StoreDbContext))]
-    [Migration("20210126122853_InitalDatabse")]
-    partial class InitalDatabse
+    [Migration("20210126202016_InitialDatabase")]
+    partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -153,25 +153,25 @@ namespace Arhitecture.Data.Migrations
                         {
                             Id = 1,
                             BeginingOfShift = new DateTime(1, 1, 1, 8, 0, 1, 0, DateTimeKind.Unspecified),
-                            EndingOfShift = new DateTime(1, 1, 1, 8, 0, 2, 0, DateTimeKind.Unspecified),
-                            FirstName = "Matija",
-                            LastName = "Luketin"
+                            EndingOfShift = new DateTime(1, 1, 1, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Mate",
+                            LastName = "Matić"
                         },
                         new
                         {
                             Id = 2,
-                            BeginingOfShift = new DateTime(1, 1, 1, 8, 0, 3, 0, DateTimeKind.Unspecified),
-                            EndingOfShift = new DateTime(1, 1, 1, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            BeginingOfShift = new DateTime(1, 1, 1, 16, 0, 1, 0, DateTimeKind.Unspecified),
+                            EndingOfShift = new DateTime(1, 1, 1, 23, 59, 59, 0, DateTimeKind.Unspecified),
                             FirstName = "Ante",
-                            LastName = "Vuletić"
+                            LastName = "Antić"
                         },
                         new
                         {
                             Id = 3,
-                            BeginingOfShift = new DateTime(1, 1, 1, 20, 0, 1, 0, DateTimeKind.Unspecified),
+                            BeginingOfShift = new DateTime(1, 1, 1, 23, 59, 59, 0, DateTimeKind.Unspecified),
                             EndingOfShift = new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified),
-                            FirstName = "Krešimir",
-                            LastName = "Čondić"
+                            FirstName = "Ana",
+                            LastName = "Anić"
                         });
                 });
 
@@ -675,8 +675,17 @@ namespace Arhitecture.Data.Migrations
                     b.Property<int?>("BillId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CreditCardNumber")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("EndingDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("RentId")
                         .HasColumnType("int");
@@ -684,16 +693,11 @@ namespace Arhitecture.Data.Migrations
                     b.Property<DateTime>("StartingDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int?>("SubscriptionerId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BillId");
 
                     b.HasIndex("RentId");
-
-                    b.HasIndex("SubscriptionerId");
 
                     b.ToTable("RentBills");
 
@@ -701,34 +705,42 @@ namespace Arhitecture.Data.Migrations
                         new
                         {
                             Id = 1,
+                            CreditCardNumber = "1234123412341234",
                             EndingDate = new DateTime(2020, 11, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Michelle",
+                            LastName = "Šarić",
                             RentId = 1,
-                            StartingDate = new DateTime(2020, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SubscriptionerId = 1
+                            StartingDate = new DateTime(2020, 11, 4, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
+                            CreditCardNumber = "1234123412345678",
                             EndingDate = new DateTime(2020, 12, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Bože",
+                            LastName = "Topić",
                             RentId = 2,
-                            StartingDate = new DateTime(2020, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SubscriptionerId = 2
+                            StartingDate = new DateTime(2020, 12, 16, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
+                            CreditCardNumber = "1234123412341235",
                             EndingDate = new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Lucia",
+                            LastName = "Vukorepa",
                             RentId = 3,
-                            StartingDate = new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SubscriptionerId = 3
+                            StartingDate = new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
+                            CreditCardNumber = "1234123412341235",
                             EndingDate = new DateTime(2020, 11, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            FirstName = "Lucia",
+                            LastName = "Vukorepa",
                             RentId = 4,
-                            StartingDate = new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            SubscriptionerId = 3
+                            StartingDate = new DateTime(2020, 11, 17, 0, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -799,13 +811,13 @@ namespace Arhitecture.Data.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("EndingDateAndTime")
+                    b.Property<DateTime>("EndingTime")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("ServiceId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("StartingDateAndTime")
+                    b.Property<DateTime>("StartingTime")
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
@@ -824,80 +836,36 @@ namespace Arhitecture.Data.Migrations
                             Id = 1,
                             BillId = 3,
                             EmployeeId = 1,
-                            EndingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 2, 0, DateTimeKind.Unspecified),
+                            EndingTime = new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceId = 1,
-                            StartingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 1, 0, DateTimeKind.Unspecified)
+                            StartingTime = new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 2,
                             BillId = 4,
                             EmployeeId = 2,
-                            EndingDateAndTime = new DateTime(2020, 12, 16, 16, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndingTime = new DateTime(1, 1, 1, 22, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceId = 1,
-                            StartingDateAndTime = new DateTime(2020, 12, 14, 8, 0, 2, 0, DateTimeKind.Unspecified)
+                            StartingTime = new DateTime(1, 1, 1, 17, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 3,
                             BillId = 5,
                             EmployeeId = 2,
-                            EndingDateAndTime = new DateTime(2020, 12, 17, 20, 0, 0, 0, DateTimeKind.Unspecified),
+                            EndingTime = new DateTime(1, 1, 1, 12, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceId = 2,
-                            StartingDateAndTime = new DateTime(2020, 12, 16, 17, 0, 0, 0, DateTimeKind.Unspecified)
+                            StartingTime = new DateTime(1, 1, 1, 8, 0, 0, 0, DateTimeKind.Unspecified)
                         },
                         new
                         {
                             Id = 4,
                             BillId = 6,
                             EmployeeId = 2,
-                            EndingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 2, 0, DateTimeKind.Unspecified),
+                            EndingTime = new DateTime(1, 1, 1, 7, 0, 0, 0, DateTimeKind.Unspecified),
                             ServiceId = 4,
-                            StartingDateAndTime = new DateTime(2020, 12, 4, 8, 0, 1, 0, DateTimeKind.Unspecified)
-                        });
-                });
-
-            modelBuilder.Entity("Arhitecture.Data.Entities.Models.Subscriptioner", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .UseIdentityColumn();
-
-                    b.Property<string>("CreditCardNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("FirstName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("LastName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Subscriptioners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreditCardNumber = "1234123412341234",
-                            FirstName = "Michelle",
-                            LastName = "Šarić"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreditCardNumber = "1234123412345678",
-                            FirstName = "Bože",
-                            LastName = "Topić"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CreditCardNumber = "1234123412341235",
-                            FirstName = "Lucia",
-                            LastName = "Vukorepa"
+                            StartingTime = new DateTime(1, 1, 1, 1, 0, 0, 0, DateTimeKind.Unspecified)
                         });
                 });
 
@@ -976,15 +944,9 @@ namespace Arhitecture.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Arhitecture.Data.Entities.Models.Subscriptioner", "Subscriptioner")
-                        .WithMany("RentBills")
-                        .HasForeignKey("SubscriptionerId");
-
                     b.Navigation("Bill");
 
                     b.Navigation("Rent");
-
-                    b.Navigation("Subscriptioner");
                 });
 
             modelBuilder.Entity("Arhitecture.Data.Entities.Models.Service", b =>
@@ -1066,11 +1028,6 @@ namespace Arhitecture.Data.Migrations
             modelBuilder.Entity("Arhitecture.Data.Entities.Models.Service", b =>
                 {
                     b.Navigation("ServiceBills");
-                });
-
-            modelBuilder.Entity("Arhitecture.Data.Entities.Models.Subscriptioner", b =>
-                {
-                    b.Navigation("RentBills");
                 });
 #pragma warning restore 612, 618
         }
